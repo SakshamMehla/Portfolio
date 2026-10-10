@@ -1,4 +1,4 @@
-export function Contact() {
+﻿export function Contact() {
     return (
       <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
         <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
@@ -32,7 +32,7 @@ export function Contact() {
                 rel="noreferrer"
                 className="block text-sm text-ink/60 hover:text-ink"
               >
-                LinkedIn ↗
+                LinkedIn
               </a>
   
               <a
@@ -41,7 +41,7 @@ export function Contact() {
                 rel="noreferrer"
                 className="block text-sm text-ink/60 hover:text-ink"
               >
-                GitHub ↗
+                GitHub
               </a>
             </div>
           </div>

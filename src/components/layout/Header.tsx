@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+﻿import { useEffect, useState } from 'react'
 import { navItems } from '@/lib/navigation'
 
 const mobileNavId = 'mobile-navigation'
@@ -37,6 +37,21 @@ export function Header() {
     }
   }, [isMenuOpen])
 
+  const [theme, setTheme] = useState<'light' | 'dark'>(() => {
+    try {
+      const saved = localStorage.getItem('theme')
+      if (saved === 'light' || saved === 'dark') return saved
+    } catch {
+      // Use system preference.
+    }
+    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+  })
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('theme', theme) } catch { /* Ignore storage errors. */ }
+  }, [theme])
+
   function closeMenu() {
     setIsMenuOpen(false)
   }
@@ -50,6 +65,10 @@ export function Header() {
         >
           SAKSHAM MEHLA
         </a>
+
+        <button type="button" onClick={() => setTheme((current) => current === 'dark' ? 'light' : 'dark')} className="inline-flex size-10 items-center justify-center rounded-full border border-rule text-ink" aria-label="Toggle color theme" title="Toggle color theme">
+          {theme === 'dark' ? '☀' : '☾'}
+        </button>
 
         <nav aria-label="Primary" className="hidden md:block">
           <NavList onNavigate={closeMenu} />
@@ -122,3 +141,6 @@ function MenuIcon({ isOpen }: { isOpen: boolean }) {
     </span>
   )
 }
+
+
+

@@ -1,4 +1,4 @@
-export function Work() {
+﻿export function Work() {
     return (
       <section className="mx-auto max-w-5xl px-6 py-24 md:py-32">
         <div className="grid gap-10 md:grid-cols-[1fr_2fr]">
